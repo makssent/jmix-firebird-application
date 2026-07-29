@@ -1,0 +1,73 @@
+<%
+private String getThemeName(){
+    try {
+        return project_theme
+    } catch(Exception e) {
+        return "aura"
+    }
+}
+%>package ${project_rootPackage};
+
+import com.google.common.base.Strings;
+import com.vaadin.flow.component.dependency.StyleSheet;
+import com.vaadin.flow.component.page.AppShellConfigurator;
+import com.vaadin.flow.component.page.Push;
+import com.vaadin.flow.server.PWA;<%if("lumo".equals(getThemeName())) {%>
+import com.vaadin.flow.theme.lumo.Lumo;
+import io.jmix.flowui.theme.lumo.JmixLumo;<%} else {%>
+import com.vaadin.flow.theme.aura.Aura;
+import io.jmix.flowui.theme.aura.JmixAura;<%}%>
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.event.ApplicationStartedEvent;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.autoconfigure.DataSourceProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.event.EventListener;
+import org.springframework.core.env.Environment;
+
+import javax.sql.DataSource;
+
+@Push<%if("lumo".equals(getThemeName())) {%>
+@StyleSheet(Lumo.STYLESHEET)
+@StyleSheet(JmixLumo.STYLESHEET)
+@StyleSheet("themes/${project_name}-lumo/styles.css")<%} else {%>
+@StyleSheet(Aura.STYLESHEET)
+@StyleSheet(JmixAura.STYLESHEET)
+@StyleSheet("themes/${project_name}-aura/styles.css")<%}%>
+@PWA(name = "${project_projectPrintableName}", shortName = "${project_projectPrintableName}", offline = false)
+@SpringBootApplication
+public class ${project_classPrefix}Application implements AppShellConfigurator {
+
+    @Autowired
+    private Environment environment;
+
+    public static void main(String[] args) {
+        SpringApplication.run(${project_classPrefix}Application.class, args);
+    }
+
+    @Bean
+    @Primary
+    @ConfigurationProperties("main.datasource")
+    DataSourceProperties dataSourceProperties() {
+        return new DataSourceProperties();
+    }
+
+    @Bean
+    @Primary
+    @ConfigurationProperties("main.datasource.hikari")
+    DataSource dataSource(final DataSourceProperties dataSourceProperties) {
+        return dataSourceProperties.initializeDataSourceBuilder().build();
+    }
+
+    @EventListener
+    public void printApplicationUrl(final ApplicationStartedEvent event) {
+        LoggerFactory.getLogger(${project_classPrefix}Application.class).info("Application started at "
+                + "http://localhost:"
+                + environment.getProperty("local.server.port")
+                + Strings.nullToEmpty(environment.getProperty("server.servlet.context-path")));
+    }
+}
