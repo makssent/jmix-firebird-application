@@ -11,7 +11,7 @@
     <changeSet id="1" author="jmix-firebird-application" context="!cuba">
 
         <createTable tableName="USER_">
-            <column name="ID" type="\${uuid.type}">
+            <column name="ID" type="${uuid.type}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="VERSION" type="int">

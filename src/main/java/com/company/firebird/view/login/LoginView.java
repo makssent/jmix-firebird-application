@@ -57,10 +57,10 @@ public class LoginView extends StandardView implements LocaleChangeObserver {
     @ViewComponent
     private MessageBundle messageBundle;
 
-    @Value("\${ui.login.defaultUsername:}")
+    @Value("${ui.login.defaultUsername:}")
     private String defaultUsername;
 
-    @Value("\${ui.login.defaultPassword:}")
+    @Value("${ui.login.defaultPassword:}")
     private String defaultPassword;
 
     @Subscribe
