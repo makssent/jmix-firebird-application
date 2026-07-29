@@ -12,8 +12,8 @@ jmix {
     projectId = '$project_id'<%}%>
 }
 
-group = '${project_group}'
-version = '${project_version}'
+group = 'com.company'
+version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()<%if (project_additionalRepositories) {
