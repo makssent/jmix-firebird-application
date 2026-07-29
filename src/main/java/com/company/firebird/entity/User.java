@@ -17,7 +17,7 @@ import java.util.Collections;
 import java.util.UUID;
 
 @JmixEntity
-@Entity<%if(!normalizedPrefix_underscore.isEmpty()) {%>(name = "User")<%}%>
+@Entity
 @Table(name = "USER_", indexes = {
         @Index(name = "IDX_USER__ON_USERNAME", columnList = "USERNAME", unique = true)
 })

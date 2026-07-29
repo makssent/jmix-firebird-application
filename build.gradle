@@ -8,17 +8,17 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'com.vaadin'
 
 jmix {
-    bomVersion = '@bomVersion@'<%if (project_id) {%>
-    projectId = '$project_id'<%}%>
+    bomVersion = '@bomVersion@'
+    projectId = 'firebird'
 }
 
 group = 'com.company'
 version = '1.0-SNAPSHOT'
 
 repositories {
-    mavenCentral()<%if (project_additionalRepositories) {
-    project_additionalRepositories.each { additionalRepository ->%>
-${additionalRepository}<%}}%>
+    mavenLocal()
+    mavenCentral()
+    maven { url = 'https://global.repo.jmix.io/repository/public' }
 }
 
 dependencies {
