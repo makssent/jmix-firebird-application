@@ -34,9 +34,12 @@ dependencies {
     implementation 'io.jmix.datatools:jmix-datatools-starter'
     implementation 'io.jmix.datatools:jmix-datatools-flowui-starter'
 
+    implementation 'io.github.makssent:jmix-firebird-starter:0.1.0-SNAPSHOT'
+
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'com.vaadin:vaadin-dev'
 
+    runtimeOnly 'org.firebirdsql.jdbc:jaybird:6.0.5'
     runtimeOnly 'org.hsqldb:hsqldb'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
