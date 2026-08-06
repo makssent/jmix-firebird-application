@@ -13,18 +13,22 @@ Built against Jmix 3.0.0.
 
 - JDK 17 or newer
 - A running Firebird server (3.0 or newer)
-- The Firebird add-on available to Gradle
 
-The add-on is not published to a public repository yet, so build and install it locally first:
+The add-on is published to Maven Central, so nothing has to be built by hand:
 
-```bash
-git clone https://github.com/makssent/jmix-firebird-addon
-cd jmix-firebird-addon
-./gradlew publishToMavenLocal
+```groovy
+implementation 'io.github.makssent:jmix-firebird-starter:0.1.0'
 ```
 
-This is why `mavenLocal()` is listed in `repositories` in `build.gradle`. Once the add-on is
-published, that line can be removed.
+Note that `repositories` still lists the Jmix repository alongside `mavenCentral()`. Jmix artifacts
+are not on Maven Central, so without it the build fails while resolving `io.jmix.*`:
+
+```groovy
+repositories {
+    mavenCentral()
+    maven { url = 'https://global.repo.jmix.io/repository/public' }
+}
+```
 
 ## Setup
 

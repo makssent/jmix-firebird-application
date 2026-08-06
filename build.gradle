@@ -16,7 +16,6 @@ group = 'com.company'
 version = '1.0-SNAPSHOT'
 
 repositories {
-    mavenLocal()
     mavenCentral()
     maven { url = 'https://global.repo.jmix.io/repository/public' }
 }
@@ -34,7 +33,7 @@ dependencies {
     implementation 'io.jmix.datatools:jmix-datatools-starter'
     implementation 'io.jmix.datatools:jmix-datatools-flowui-starter'
 
-    implementation 'io.github.makssent:jmix-firebird-starter:0.1.0-SNAPSHOT'
+    implementation 'io.github.makssent:jmix-firebird-starter:0.1.0'
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'com.vaadin:vaadin-dev'
