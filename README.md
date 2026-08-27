@@ -17,7 +17,7 @@ Built against Jmix 3.0.0.
 The add-on is published to Maven Central, so nothing has to be built by hand:
 
 ```groovy
-implementation 'io.github.makssent:jmix-firebird-starter:0.1.0'
+implementation 'io.github.makssent:jmix-firebird-starter:3.0.0'
 ```
 
 Note that `repositories` still lists the Jmix repository alongside `mavenCentral()`. Jmix artifacts
