@@ -9,6 +9,12 @@ hand.
 
 Built against Jmix 3.0.0.
 
+## Origin and license
+
+This project is based on the official Jmix application template and adapted for Firebird. See
+[UPSTREAM.md](UPSTREAM.md) for its origin and changes. The project is licensed under the
+[Apache License 2.0](LICENSE).
+
 ## Prerequisites
 
 - JDK 17 or newer
